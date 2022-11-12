@@ -5,17 +5,20 @@ import java.util.Objects;
 public class Card {
 //has-a (association)
 	private Rank rank;
-private Suit suit;
-	
-public Card() {}
+	private Suit suit;
+
+	public Card() {
+	}
 
 	public Card(Suit suit, Rank rank) {
 		this.suit = suit;
 		this.rank = rank;
 	}
+
 	public int getValue() {
 		return this.rank.getValue();
 	}
+
 	public Rank getRank() {
 		return rank;
 	}
@@ -31,7 +34,6 @@ public Card() {}
 	public void setSuit(Suit suit) {
 		this.suit = suit;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -54,5 +56,5 @@ public Card() {}
 	public String toString() {
 		return rank + " of " + suit;
 	}
-	
+
 }

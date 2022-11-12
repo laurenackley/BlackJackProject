@@ -11,12 +11,12 @@ public class Deck {
 	public Deck() {
 		Suit[] suits = Suit.values();
 		Rank[] ranks = Rank.values();
-		
+
 		// generate a fresh deck of all 52 cards
 		for (Suit suit : suits) {
-			//for each suit
+			// for each suit
 			for (Rank rank : ranks) {
-				//for all 13 ranks
+				// for all 13 ranks
 				Card aCard = new Card(suit, rank);
 				deck.add(aCard);
 			}
@@ -31,8 +31,7 @@ public class Deck {
 		return deck.size();
 	}
 
-
-	public Card dealCard() {
+	public Card getTopCard() {
 		return deck.remove(0);
 	}
 
