@@ -7,7 +7,7 @@ import com.skilldistillery.cardgame.Hand;
 import com.skilldistillery.cards.Card;
 
 public class Player {
-	protected Hand hand; // can change to protected
+	protected Hand hand;
 
 	public Player() {
 		this.hand = new BlackjackHand();
@@ -47,17 +47,20 @@ public class Player {
 
 		System.out.println("Do you want to hit or stay?");
 		String answer = sc.next();
-
+		if (!answer.equalsIgnoreCase("hit")) {
+		}
 		while (answer.equalsIgnoreCase("hit")) {
 			dealer.dealCardTo(player);
 			player.printHand();
-			if(getHandValue() >= 21) {
+			if (getHandValue() >= 21) {
 				break;
 			}
 			System.out.println("Would you like to hit again?");
 			answer = sc.next();
 			getHandValue();
 			continue;
-		 }
+		}
+		 if(answer.equalsIgnoreCase("stay")) {
+		}
 	}
 }

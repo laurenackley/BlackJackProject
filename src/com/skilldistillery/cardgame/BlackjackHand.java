@@ -16,9 +16,13 @@ public class BlackjackHand extends Hand {
 		return total;
 	}
 
-
-	
-	
-	
+	public String dealerHandHidden() {
+		for (int i = 1; i < myHand.size(); i++) {
+			if (myHand.size() >= 2) {
+				return " has " + myHand.get(i);
+			}
+		}
+		return "";
+	}
 
 }

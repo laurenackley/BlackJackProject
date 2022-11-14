@@ -7,7 +7,7 @@ import com.skilldistillery.cards.Card;
 
 public abstract class Hand {
 	protected List<Card> myHand = new ArrayList<>();
-
+//	protected List<myHand> dealerHandHidden = new ArrayList<>();
 	public Hand() {
 
 	}

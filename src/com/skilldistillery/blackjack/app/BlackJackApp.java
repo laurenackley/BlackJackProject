@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class BlackJackApp {
 
 	public static void main(String[] args) {
-		// cannot put anything type hand in this
 		Scanner sc = new Scanner(System.in);
 		Dealer dealer = new Dealer();
 		Player player = new Player();
@@ -17,31 +16,54 @@ public class BlackJackApp {
 			dealer.dealCardTo(player);
 			dealer.dealCardTo(dealer);
 		}
+
 		player.printHand();
-
-		dealer.printHand();
-
-		if (player.isBust() == false) {
-			player.hitOrStay(sc, player, dealer);
-			dealer.underSeventeen(dealer);		
+		if (player.isBlackJack() == true) {
 		}
-		if (player.isBust() == true) {
+		dealer.printHandHidden();
+
+		if (player.isBust() == false && player.isBlackJack() == false) {
+			player.hitOrStay(sc, player, dealer);
+		}
+		if (player.isBlackJack() == true) {
+			System.out.println("Congrats! BLACKJACK!");
+			System.out.println(" /$$     /$$/$$$$$$  /$$   /$$       /$$      /$$ /$$$$$$ /$$   /$$ /$$\n"
+					+ "|  $$   /$$/$$__  $$| $$  | $$      | $$  /$ | $$|_  $$_/| $$$ | $$| $$\n"
+					+ " \\  $$ /$$/ $$  \\ $$| $$  | $$      | $$ /$$$| $$  | $$  | $$$$| $$| $$\n"
+					+ "  \\  $$$$/| $$  | $$| $$  | $$      | $$/$$ $$ $$  | $$  | $$ $$ $$| $$\n"
+					+ "   \\  $$/ | $$  | $$| $$  | $$      | $$$$_  $$$$  | $$  | $$  $$$$|__/\n"
+					+ "    | $$  | $$  | $$| $$  | $$      | $$$/ \\  $$$  | $$  | $$\\  $$$    \n"
+					+ "    | $$  |  $$$$$$/|  $$$$$$/      | $$/   \\  $$ /$$$$$$| $$ \\  $$ /$$\n"
+					+ "    |__/   \\______/  \\______/       |__/     \\__/|______/|__/  \\__/|__/");
+		} else if (player.isBust() == true) {
 			System.out.println("Dealer wins, you busted!");
+		} else if (player.isBlackJack() == false && player.isBust() == false) {
+			System.out.println("The dealer has less than 17 in total value...Dealer hits.");
+			dealer.underSeventeen(dealer);
 		}
 
 		if (dealer.getHandValue() > player.getHandValue() && dealer.getHandValue() <= 21) {
-			System.out.println("Dealer wins!");
-		}
-		if(dealer.getHandValue() > 21) {
+			System.out.println("Dealer is closer to 21. Dealer wins!");
+			dealer.printHand();
+
+		} else if (dealer.getHandValue() > 21) {
+			System.out.println();
 			System.out.println("Dealer busted, you win.");
+			
+			System.out.println(" /$$     /$$/$$$$$$  /$$   /$$       /$$      /$$ /$$$$$$ /$$   /$$ /$$\n"
+					+ "|  $$   /$$/$$__  $$| $$  | $$      | $$  /$ | $$|_  $$_/| $$$ | $$| $$\n"
+					+ " \\  $$ /$$/ $$  \\ $$| $$  | $$      | $$ /$$$| $$  | $$  | $$$$| $$| $$\n"
+					+ "  \\  $$$$/| $$  | $$| $$  | $$      | $$/$$ $$ $$  | $$  | $$ $$ $$| $$\n"
+					+ "   \\  $$/ | $$  | $$| $$  | $$      | $$$$_  $$$$  | $$  | $$  $$$$|__/\n"
+					+ "    | $$  | $$  | $$| $$  | $$      | $$$/ \\  $$$  | $$  | $$\\  $$$    \n"
+					+ "    | $$  |  $$$$$$/|  $$$$$$/      | $$/   \\  $$ /$$$$$$| $$ \\  $$ /$$\n"
+					+ "    |__/   \\______/  \\______/       |__/     \\__/|______/|__/  \\__/|__/");
+			//dealer.printHand();
 		}
 
-		if (player.getHandValue() > dealer.getHandValue() && player.getHandValue() <= 21) {
-			System.out.println("You win!");
-		}
-
-		if (player.isBlackJack() == true) {
-			System.out.println("Congrats! BLACKJACK!");
+		else if (player.getHandValue() == dealer.getHandValue()) {
+			System.out.println("It is a tie. Nothing gained, nothing lost.");
+			dealer.printHand();
 		}
 
 		sc.close();
