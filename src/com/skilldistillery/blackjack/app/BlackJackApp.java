@@ -11,7 +11,16 @@ public class BlackJackApp {
 		Scanner sc = new Scanner(System.in);
 		Dealer dealer = new Dealer();
 		Player player = new Player();
+		BlackJackApp app = new BlackJackApp();
+		
 
+		app.gamePlay(sc, dealer, player);
+			
+		System.out.println("Thanks for playing!");
+			sc.close();
+		}
+		
+		private void gamePlay(Scanner sc, Dealer dealer, Player player) {		
 		for (int i = 0; i < 2; i++) {
 			dealer.dealCardTo(player);
 			dealer.dealCardTo(dealer);
@@ -65,8 +74,9 @@ public class BlackJackApp {
 			System.out.println("It is a tie. Nothing gained, nothing lost.");
 			dealer.printHand();
 		}
-
-		sc.close();
+		
 	}
 
+		// TODO Auto-generated method stub
+		
 }
